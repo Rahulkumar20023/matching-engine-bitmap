@@ -28,7 +28,7 @@ impl BidBook {
         if result.is_ok() {
             self.bitmap.set_bit(tick_idx as u64);
         } else if price_level.order_count == 0 {
-            // ✅ clean up empty price level if alloc failed
+            
             self.price_levels[tick_idx] = None;
         }
 
