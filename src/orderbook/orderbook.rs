@@ -23,7 +23,7 @@ impl OrderBook {
         }
     }
 
-    // ✅ returns None if out of range
+    
     pub fn price_to_tick(&self, price: Price) -> Option<usize> {
         if price < self.base_price { return None; }
         let tick = ((price - self.base_price) / self.tick_size) as usize;
@@ -111,7 +111,7 @@ impl OrderBook {
 
                 if let Slot::Occupied { ref mut order, .. } = self.arena.order_store[ask_idx] {
                     order.quantity   -= filled_qty;
-                    order.filled_qty += filled_qty;  // ✅ track filled
+                    order.filled_qty += filled_qty; 
                 }
                 if let Some(pl) = self.asks.price_levels[best_ask_tick].as_mut() {
                     pl.total_qty -= filled_qty;
@@ -123,7 +123,7 @@ impl OrderBook {
 
                 if let Slot::Occupied { ref mut order, .. } = self.arena.order_store[bid_idx] {
                     order.quantity   -= filled_qty;
-                    order.filled_qty += filled_qty;  // ✅ track filled
+                    order.filled_qty += filled_qty; 
                 }
                 if let Some(pl) = self.bids.price_levels[best_bid_tick].as_mut() {
                     pl.total_qty -= filled_qty;
