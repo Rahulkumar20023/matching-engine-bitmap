@@ -56,7 +56,7 @@ impl Arena {
                     price_level.head = Some(idx);
                 }
 
-                // ✅ update total_qty
+               
                 if let Slot::Occupied { ref order, .. } = self.order_store[idx] {
                     price_level.total_qty += order.quantity;
                 }
@@ -77,7 +77,7 @@ impl Arena {
             Slot::Free { .. } => return,
         };
 
-        // ✅ subtract from total_qty before freeing
+        
         if let Slot::Occupied { ref order, .. } = self.order_store[idx] {
             price_level.total_qty = price_level.total_qty.saturating_sub(order.quantity);
         }
